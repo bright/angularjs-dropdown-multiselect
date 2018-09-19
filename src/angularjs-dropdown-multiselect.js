@@ -30,7 +30,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 
 			var template = '<div class="multiselect-parent btn-group dropdown-multiselect" ng-class="{open: open}">';
 			template += '<button ng-disabled="disabled" type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
-			template += '<ul class="dropdown-menu dropdown-menu-form" ng-if="open" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\', overflow: \'auto\' }" >';
+			template += '<ul class="dropdown-menu dropdown-menu-form" ng-if="open" ng-style="{display: open ? \'block\' : \'none\', \'max-height\' : settings.scrollable ? settings.scrollableHeight : \'auto\', overflow: \'auto\' }" >';
 
 			template += '<li ng-if="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control searchField" ng-keydown="keyDownSearchDefault($event); keyDownSearch($event, input.searchFilter);" ng-style="{width: \'100%\'}" ng-model="input.searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
 

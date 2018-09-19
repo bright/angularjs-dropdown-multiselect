@@ -191,9 +191,11 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 				$scope.externalEvents.onSelectionChanged();
 			};
 
-			angular.extend($scope.settings, $scope.extraSettings || []);
-			angular.extend($scope.externalEvents, $scope.events || []);
-			angular.extend($scope.texts, $scope.translationTexts);
+			$scope.$watchGroup(['extraSettings', 'events', 'translationTexts'], function() {
+				angular.extend($scope.settings, $scope.extraSettings || []);
+				angular.extend($scope.externalEvents, $scope.events || []);
+				angular.extend($scope.texts, $scope.translationTexts);
+			});
 
 			$scope.singleSelection = $scope.settings.selectionLimit === 1;
 

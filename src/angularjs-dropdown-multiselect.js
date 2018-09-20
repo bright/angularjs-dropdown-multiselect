@@ -15,7 +15,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 	return {
 		restrict: 'AE',
 		scope: {
-			selectedModel: '=',
+			ngModel: '=',
 			options: '=',
 			extraSettings: '=',
 			events: '=',
@@ -166,7 +166,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 				});
 			}
 
-			$scope.$watch('selectedModel', function(newValue) {
+			$scope.$watch('ngModel', function(newValue) {
+				$scope.selectedModel = angular.copy(newValue);
 				if (!Array.isArray(newValue)) {
 					$scope.singleSelection = true;
 				} else {
@@ -175,6 +176,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 			});
 
 			$scope.close = function() {
+				$scope.ngModel = angular.copy($scope.selectedModel);
 				$scope.open = false;
 				$scope.input.searchFilter = $scope.settings.clearSearchOnClose ? '' : $scope.input.searchFilter;
 				$scope.externalEvents.onClose();
